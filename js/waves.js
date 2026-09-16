@@ -12,54 +12,104 @@ function resizeCanvas() {
 window.addEventListener("resize", resizeCanvas);
 resizeCanvas();
 
+function makeSegment() {
+    const lowWidth = 20 + Math.random() * 40;
+    const highWidth = 20 + Math.random() * 40;
+
+    return {
+        lowWidth,
+        highWidth,
+        width: lowWidth + highWidth
+    };
+}
+
 const waves = [];
 
 for (let i = 0; i < 8; i++) {
     waves.push({
-        y: Math.random() * height,
+        y: height * (i / 8),
         x: Math.random() * width,
         speed: 0.3 + Math.random() * 0.7,
-        amplitude: 20 + Math.random() * 40,
-        spacing: 40 + Math.random() * 80
+        amplitude: 40,
+        segments: []
     });
 }
 
+// Fill each wave with enough segments to cover the screen
+waves.forEach(wave => {
+    let coveredWidth = 0;
+
+    while (coveredWidth < width * 2) {
+        const segment = makeSegment();
+        wave.segments.push(segment);
+        coveredWidth += segment.width;
+    }
+});
+
 function drawWave(wave) {
+    ctx.strokeStyle = "#999DA0";
+    ctx.lineWidth = 1.5;
+
     ctx.beginPath();
 
     let x = wave.x;
 
     ctx.moveTo(x, wave.y);
 
-    while (x < width + 100) {
-        // High
-        ctx.lineTo(x + wave.spacing / 2, wave.y);
+    for (const segment of wave.segments) {
+
+        // Low section
+        ctx.lineTo(
+            x + segment.lowWidth,
+            wave.y
+        );
 
         // Rising edge
-        ctx.lineTo(x + wave.spacing / 2, wave.y - wave.amplitude);
+        ctx.lineTo(
+            x + segment.lowWidth,
+            wave.y - wave.amplitude
+        );
 
-        // High
-        ctx.lineTo(x + wave.spacing, wave.y - wave.amplitude);
+        // High section
+        ctx.lineTo(
+            x + segment.width,
+            wave.y - wave.amplitude
+        );
 
         // Falling edge
-        ctx.lineTo(x + wave.spacing, wave.y);
+        ctx.lineTo(
+            x + segment.width,
+            wave.y
+        );
 
-        x += wave.spacing;
+        x += segment.width;
+
+        if (x > width + 100) {
+            break;
+        }
     }
 
     ctx.stroke();
 }
 
 function animate() {
+
     ctx.clearRect(0, 0, width, height);
 
-    ctx.lineWidth = 1.5;
-
     waves.forEach(wave => {
+
+        // Move wave to the left
         wave.x -= wave.speed;
 
-        if (wave.x < -wave.spacing * 2) {
-            wave.x = width;
+        // If a segment completely leaves the screen,
+        // remove it and add a new one at the end.
+        while (
+            wave.segments.length > 0 &&
+            wave.x + wave.segments[0].width < 0
+        ) {
+            const oldSegment = wave.segments.shift();
+            wave.x += oldSegment.width;
+            wave.segments.push(makeSegment());
         }
 
         drawWave(wave);
