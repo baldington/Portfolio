@@ -93,3 +93,14 @@ footer { border-top: 1px solid var(--line); padding: 25px 24px; text-align: cent
   .project-card.featured { grid-column: span 1; }
   .split { gap: 25px; }
 }
+
+#wave-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.25;
+}
