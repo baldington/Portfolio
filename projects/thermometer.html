@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Battery-Powered Thermometer | Thomas Ireland</title>
+  <title>ESP32-Based Thermometer | Thomas Ireland</title>
   <link rel="stylesheet" href="../style.css">
 </head>
 <body>
@@ -12,28 +12,52 @@
 <section class="hero" style="min-height:auto;padding-top:100px">
   <p class="eyebrow">PROJECT 02 · EMBEDDED / SENSOR</p>
   <h1>Battery-Powered<br><span>Thermometer</span></h1>
-  <p class="intro">An ESP32-based temperature measurement system designed around a compact battery-powered architecture.</p>
+  <p class="intro">An ESP32-based Tempurature measurement system with a wireless tempurature display</p>
 </section>
 <section class="section">
   <p class="eyebrow">OVERVIEW</p><h2>Project goal</h2>
-  <p>Replace this text with the problem you wanted to solve and the requirements you established.</p>
+  <p>My parents own a cottage on a roughly one acre plot of land. On said cottage there is a wood-fire smoker barbeque. These
+  barbeques will cook for hours and need wood changing every 30 ± 10 minutes or so. As I don’t want to sit at the fire for
+  hours on end I wanted a probe that could tell me the temperature wirelessly anywhere on the property.</p>
+  <h2>Solution</h2>
+  <p>I designed an ESP32 based probe as its wifi range was roughly big enough without needing any extensions. The board would
+  connect to an external thermistor rated for 100of to 400of that sat in the barbeque.
+  
+  I also designed a 3.7V LiPO battery charging into the board itself so the board would have roughly 2 days worth of
+  battery life and could be charged at any time with a USB-C. 
+
+  I am also currently developing firmware to display the tempurature over wifi.
+</p>
 </section>
 <section class="section split">
   <div><h2>System</h2></div>
-  <div><p>ESP32 · thermistor probe · ADC · battery · USB-C charging · voltage regulation · wireless data</p></div>
+  <div><p>ESP32 · thermistor probe · Power electronics · USB-C charging · wireless data</p></div>
 </section>
 <section class="section">
   <p class="eyebrow">HARDWARE</p><h2>Schematic & PCB</h2>
-  <div class="placeholder" style="min-height:300px">ADD SCHEMATIC / PCB IMAGE</div>
-</section>
-<section class="section">
-  <p class="eyebrow">FIRMWARE</p><h2>Embedded software</h2>
-  <p>Explain how temperature is measured, converted, filtered, and transmitted. Link the firmware repository below.</p>
-</section>
-<section class="section">
-  <p class="eyebrow">VALIDATION</p><h2>Testing</h2>
-  <div class="placeholder" style="min-height:300px">ADD TEST PHOTO</div>
-  <p>Document measurements, battery performance, sensor accuracy, and any problems encountered.</p>
+  <div class="diagram-gallery">
+    <button class="diagram-button" type="button" data-full-image="../assets/schematic - controller.png"
+      data-full-alt="Thermometer controller schematic">
+      <img src="../assets/schematic - controller.png" alt="Thermometer controller schematic">
+    </button>
+    <p>
+      Controller schematic
+    </p>
+    <button class="diagram-button" type="button" data-full-image="../assets/schematic - power management.png"
+      data-full-alt="Thermometer power management schematic">
+      <img src="../assets/schematic - power management.png" alt="Thermometer power management schematic">
+    </button>
+    <p>
+      Power schematic
+    </p>
+    <button class="diagram-button" type="button" data-full-image="../assets/layout (1).png"
+      data-full-alt="Thermometer PCB layout">
+      <img src="../assets/layout (1).png" alt="Thermometer PCB layout">
+    </button>
+    <p>
+      PCB layout
+    </p>
+  </div>
 </section>
 <section class="section">
   <p class="eyebrow">FILES</p><h2>Project resources</h2>

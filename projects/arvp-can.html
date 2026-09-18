@@ -12,34 +12,54 @@
 <section class="hero" style="min-height:auto;padding-top:100px">
   <p class="eyebrow">PROJECT 01 · PCB / EMBEDDED</p>
   <h1>ARVP CAN<br><span>Interface</span></h1>
-  <p class="intro">A PC-to-CAN interface PCB developed for the University of Alberta Autonomous Robotic Vehicle Project.</p>
+  <p class="intro">A PC-to-CAN interface PCB developed for the Autonomous Robotic Vehicle Project.</p>
 </section>
 <section class="section">
-  <p class="eyebrow">OVERVIEW</p><h2>Project goal</h2>
-  <p>Replace this text with a concise explanation of the engineering problem, requirements, and your role.</p>
-</section>
-<section class="section split">
-  <div><h2>My role</h2></div>
-  <div><p>• Schematic design in Altium<br>• PCB layout and routing<br>• CAN transceiver integration<br>• Power architecture<br>• Hardware testing and debugging</p></div>
+  <p class="eyebrow">OVERVIEW</p><h2>Project Problem</h2>
+  <p>As ARVP was creating our electrical system we needed a new board to connect the central computer with the CAN bus. Our previous board was bulky, contained a lot of unnecessary/unused components (I2C, SPI, UART connectors; unused LEDs; etc.) and was hard to read at a quick glance.</p>
+  
+  <h2>Project goal</h2>
+  <p>To solve the outlined problems I planned to make a new board with more no unused ports, larger text, and smaller overall size.</p>
 </section>
 <section class="section">
   <p class="eyebrow">DESIGN</p><h2>Hardware architecture</h2>
-  <div class="placeholder" style="min-height:300px">ADD SYSTEM DIAGRAM / SCHEMATIC</div>
-</section>
-<section class="section split">
-  <div><h2>Engineering decisions</h2></div>
-  <div><p><strong>Power:</strong> Explain why you selected your regulator architecture.<br><br><strong>CAN:</strong> Explain the transceiver, termination, bitrate, and interface decisions.<br><br><strong>Layout:</strong> Explain routing, grounding, decoupling, and placement decisions.</p></div>
-</section>
-<section class="section">
-  <p class="eyebrow">VALIDATION</p><h2>Testing & debugging</h2>
-  <div class="placeholder" style="min-height:300px">ADD TEST PHOTO / OSCILLOSCOPE SCREENSHOT</div>
-  <p>Document what you tested, what failed, what you measured, and what changed between revisions.</p>
+  <div class="diagram-gallery">
+    <button class="diagram-button" type="button" data-full-image="../assets/schematic.png" data-full-alt="Computer integration schematic">
+      <img src="../assets/schematic.png" alt="Computer integration schematic">
+    </button>
+    <p>Schematic diagram</p>
+    <button class="diagram-button" type="button" data-full-image="../assets/Layout.png" data-full-alt="PCB layout">
+      <img src="../assets/Layout.png" alt="PCB layout">
+    </button>
+    <p>PCB layout</p>
+  </div>
 </section>
 <section class="section">
   <p class="eyebrow">FILES</p><h2>Project resources</h2>
-  <p><a class="button" href="#">Schematic PDF ↗</a> <a class="button" href="#">GitHub ↗</a></p>
+  <p><a class="button" href="#">Schematic PDF ↗</a></p>
 </section>
 </main>
 <footer>© 2026 Thomas Ireland</footer>
+<dialog class="image-lightbox" aria-label="Expanded image">
+  <button class="lightbox-close" type="button" aria-label="Close expanded image">&times;</button>
+  <img src="" alt="">
+</dialog>
+<script>
+  const lightbox = document.querySelector('.image-lightbox');
+  const lightboxImage = lightbox.querySelector('img');
+
+  document.querySelectorAll('.diagram-button').forEach((button) => {
+    button.addEventListener('click', () => {
+      lightboxImage.src = button.dataset.fullImage;
+      lightboxImage.alt = button.dataset.fullAlt;
+      lightbox.showModal();
+    });
+  });
+
+  lightbox.querySelector('.lightbox-close').addEventListener('click', () => lightbox.close());
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) lightbox.close();
+  });
+</script>
 </body>
 </html>

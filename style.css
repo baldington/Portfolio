@@ -65,10 +65,61 @@ h3 { margin: 0 0 8px; }
 .project-card.featured { grid-column: span 2; }
 .project-image { aspect-ratio: 16/8; }
 .project-card:not(.featured) .project-image { aspect-ratio: 16/10; }
-.placeholder {
-  background: repeating-linear-gradient(45deg, #151a1e, #151a1e 10px, #12161a 10px, #12161a 20px);
-  display: grid; place-items: center; color: #66717a;
-  font-family: "DM Mono", monospace; font-size: .75rem;
+.project-card img.project-image {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+.diagram-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 1.5rem;
+}
+.diagram-button {
+  padding: 0;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: zoom-in;
+}
+.diagram-button img {
+  display: block;
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  transition: transform .2s ease;
+}
+.diagram-button:hover img { transform: scale(1.02); }
+.image-lightbox {
+  width: min(96vw, 1400px);
+  max-width: none;
+  padding: 16px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+.image-lightbox::backdrop { background: rgba(0, 0, 0, .85); }
+.image-lightbox img {
+  display: block;
+  max-width: 100%;
+  max-height: calc(92vh - 32px);
+  margin: auto;
+}
+.lightbox-close {
+  position: fixed;
+  top: 18px;
+  right: 22px;
+  width: 42px;
+  height: 42px;
+  color: var(--text);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
 }
 .project-body { padding: 25px; }
 .project-body p:not(.tag) { color: var(--muted); }
@@ -91,6 +142,7 @@ footer { border-top: 1px solid var(--line); padding: 25px 24px; text-align: cent
   .hero { padding-top: 100px; min-height: 70vh; }
   .project-grid, .split, .skills-grid { grid-template-columns: 1fr; }
   .project-card.featured { grid-column: span 1; }
+  .diagram-gallery { grid-template-columns: 1fr; }
   .split { gap: 25px; }
 }
 
