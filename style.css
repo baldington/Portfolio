@@ -45,6 +45,14 @@ main { max-width: var(--max); margin: auto; }
 }
 h1 { font-size: clamp(3rem, 8vw, 6.8rem); line-height: .95; letter-spacing: -.065em; margin: 0; max-width: 1000px; }
 h1 span { color: var(--muted); }
+.profile-image {
+  width: min(320px, 72vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  border: 2px solid var(--accent);
+}
 h2 { font-size: clamp(2rem, 4vw, 3.4rem); line-height: 1.05; letter-spacing: -.045em; margin: 0 0 30px; }
 h3 { margin: 0 0 8px; }
 .intro { max-width: 650px; color: var(--muted); font-size: 1.15rem; margin: 30px 0; }

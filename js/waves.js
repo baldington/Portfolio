@@ -47,7 +47,7 @@ waves.forEach(wave => {
 });
 
 function drawWave(wave) {
-    ctx.strokeStyle = "red";
+    ctx.strokeStyle = "#41782e";
     ctx.lineWidth = 1.5;
 
     ctx.beginPath();
